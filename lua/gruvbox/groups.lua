@@ -854,6 +854,9 @@ groups.setup = function()
     if groups[group] and not vim.tbl_isempty(hl) then
       groups[group].link = nil
     end
+    if type(hl) == "function" then
+      hl = hl(colors, palette, config)
+    end
     groups[group] = vim.tbl_extend("force", groups[group] or {}, hl)
   end
 
